@@ -1,0 +1,12 @@
+﻿
+@using CollegeApp.Models;
+@{
+    var message = TempData["Message"] != null ? TempData["Message"] : string.Empty;
+    var messageTooltip = ViewBag.MessageTooltip != null ? ViewBag.MessageTooltip : string.Empty;
+    var messageDisplay = TempData["Message"] != null ? "block" : "none";
+    var messageClass = TempData["MessageType"] != null ? ((CollegeEnums.MessageType)TempData["MessageType"] == CollegeEnums.MessageType.ERROR ? "alert alert-danger" :
+        ViewBag.MessageType == CollegeEnums.MessageType.INFO ? "alert alert-info" :
+        ViewBag.MessageType == CollegeEnums.MessageType.SUCCESS ? "alert alert-success" : "alert alert-warning") : string.Empty;
+
+        <div class="@messageClass" id="alert-message" role="alert" style="display: @messageDisplay;" title="@messageTooltip">@message <button type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button></div>
+}
